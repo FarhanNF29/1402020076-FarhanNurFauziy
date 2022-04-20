@@ -211,37 +211,40 @@
         }
     }
     $(document).ready(function(){
+        
+        $("#notlp").change(function(){
+            if($("#notlp").val() > 0){
+                $("#paket").prop("disabled", false);
+                $("#nominal").prop("disabled", false);
+            }else{
+                $("#paket").prop("disabled", true);
+                $("#nominal").prop("disabled", true);
+                $("#buttonGrey").show();
+                $("#buttonGreen").hide();
+                $("#buttonGreen2").hide();
+            }
+		});
         $("#labelpaket").click(function(){
             $("#paket").show();
             $("#nominal").hide();
             $("#kosongan").hide();
-            
-            $("#notlp").change(function(){
-            if($("#notlp").val() > 0){
-                $("#paket").prop("disabled", false);
-            }else{
-                $("#paket").prop("disabled", true);
-                $("#buttonGrey").show();
-                $("#buttonGreen").hide();
+        });
+        $("#paket").change(function(){
+            $("#buttonGrey").hide();
+            $("#buttonGreen2").show();
+            $("#buttonGreen").hide();
+            /*$("#buttonGreen").click(function(){
+            confirm("Pembelian pulsa sebesar " + $("#nominal").val() + " ke nomor " + $("#notlp").val());
+            });*/
+        });
+        $("#buttonGreen2").click(function(){
+            if($("#paket").change()){
+                confirm("Pembelian paket data " + $("#paket").find('option').filter(':selected').text() + " ke nomor " + $("#notlp").val()) == true
+                var uangTelpon = Number($("#paket").val());
+                var totalHarga = 0;
+                totalHarga = uangTelpon;
+                alert("Total harga pulsa Rp. " + totalHarga + ",- ke nomor " + $("#notlp").val() + " sedang di proses. Terima Kasih :)");
             }
-            });
-            $("#paket").change(function(){
-                $("#buttonGrey").hide();
-                $("#buttonGreen2").show();
-                $("#buttonGreen").hide();
-                /*$("#buttonGreen").click(function(){
-                confirm("Pembelian pulsa sebesar " + $("#nominal").val() + " ke nomor " + $("#notlp").val());
-                });*/
-            });
-            $("#buttonGreen2").click(function(){
-                if($("#paket").change()){
-                    confirm("Pembelian paket data " + $("#paket").text() + " ke nomor " + $("#notlp").val()) == true
-                    var uangTelpon = Number($("#paket").val());
-                    var totalHarga = 0;
-                    totalHarga = uangTelpon;
-                    alert("Total harga pulsa Rp. " + totalHarga + ",- ke nomor " + $("#notlp").val() + " sedang di proses. Terima Kasih :)");
-                }
-            });
         });
 
         $("#labelpulsa").click(function(){
@@ -249,39 +252,32 @@
             $("#nominal").show();
             $("#kosongan").hide();
             
-            $("#notlp").change(function(){
-            if($("#notlp").val() > 0){
-                $("#nominal").prop("disabled", false);
-            }else{
-                $("#nominal").prop("disabled", true);
-                $("#buttonGrey").show();
-                $("#buttonGreen").hide();
-            }
-            });
-            $("#nominal").change(function(){
-                $("#buttonGrey").hide();
-                $("#buttonGreen").show();
-                $("#buttonGreen2").hide();
+        });
+
+        $("#nominal").change(function(){
+            $("#buttonGrey").hide();
+            $("#buttonGreen").show();
+            $("#buttonGreen2").hide();
                 
-                /*$("#buttonGreen").click(function(){
-                confirm("Pembelian pulsa sebesar " + $("#nominal").val() + " ke nomor " + $("#notlp").val());
-                });*/
-            });
-            $("#buttonGreen").click(function(){
-                if($("#nominal").select()){
-                    confirm("Pembelian pulsa sebesar " + $("#nominal").val() + " ke nomor " + $("#notlp").val()) == true
-                    var uangTelpon = Number($("#nominal").val());
-                    var totalHarga = 0;
-                    if($("#nominal").val() >= 10000){
-                        totalHarga = uangTelpon + 2000;
-                    }else if($("#nominal").val() < 10000){
-                        totalHarga = uangTelpon + 3000;
-                    }else{
-                        totalHarga = uangTelpon;
-                    }
-                    alert("Total harga pulsa Rp. " + totalHarga + ",- ke nomor " + $("#notlp").val() + " sedang di proses. Terima Kasih :)");
+            /*$("#buttonGreen").click(function(){
+            confirm("Pembelian pulsa sebesar " + $("#nominal").val() + " ke nomor " + $("#notlp").val());
+            });*/
+        });
+
+        $("#buttonGreen").click(function(){
+            if($("#nominal").select()){
+                confirm("Pembelian pulsa sebesar " + $("#nominal").val() + " ke nomor " + $("#notlp").val()) == true
+                var uangTelpon = Number($("#nominal").val());
+                var totalHarga = 0;
+                if($("#nominal").val() >= 10000){
+                    totalHarga = uangTelpon + 2000;
+                }else if($("#nominal").val() < 10000){
+                    totalHarga = uangTelpon + 3000;
+                }else{
+                    totalHarga = uangTelpon;
                 }
-            });
+                alert("Total harga pulsa Rp. " + totalHarga + ",- ke nomor " + $("#notlp").val() + " sedang di proses. Terima Kasih :)");
+            }
         });
         
     });
